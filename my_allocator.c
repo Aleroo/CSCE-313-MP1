@@ -1,10 +1,10 @@
 /* 
     File: my_allocator.c
 
-    Author: <your name>
+    Author: Alex Benavides
             Department of Computer Science
             Texas A&M University
-    Date  : <date>
+    Date  : 10/2/2015
 
     Modified: 
 
