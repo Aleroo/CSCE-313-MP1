@@ -17,7 +17,7 @@
 /* DEFINES */
 /*--------------------------------------------------------------------------*/
 
-/* -- (none) -- */
+/* -- (none) --*/
 
 /*--------------------------------------------------------------------------*/
 /* INCLUDES */
@@ -30,6 +30,15 @@
 
 typedef void * Addr; 
 
+typedef struct Header Header;
+
+struct Header {
+	char empty;			
+	Header* next;		
+	Header* prev;		
+	unsigned int size;	
+};
+
 /*--------------------------------------------------------------------------*/
 /* FORWARDS */ 
 /*--------------------------------------------------------------------------*/
@@ -40,8 +49,7 @@ typedef void * Addr;
 /* MODULE   MY_ALLOCATOR */
 /*--------------------------------------------------------------------------*/
 
-unsigned int init_allocator(unsigned int _basic_block_size, 
-			    unsigned int _length); 
+unsigned int init_allocator(unsigned int _basic_block_size, unsigned int _length); 
 /* This function initializes the memory allocator and makes a portion of 
    ’_length’ bytes available. The allocator uses a ’_basic_block_size’ as 
    its minimal unit of allocation. The function returns the amount of 
