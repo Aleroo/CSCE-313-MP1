@@ -2,6 +2,7 @@
     File: my_allocator.c
 
     Author: Seyed Kasra Rahimi Moghadam
+			Alejandro Benevidas
             Department of Computer Science
             Texas A&M University
     Date  : 10/3/2015
@@ -104,7 +105,7 @@ extern Addr my_malloc(unsigned int _length) {
 	Header* touse = NULL;
 	Header* tNext = NULL;
 		
-	printf("\nAllocating [%d]\n",_length);
+	//printf("\nAllocating [%d]\n",_length);
 		
 	int i, j;
 	int final_i, final_j;
@@ -127,18 +128,18 @@ extern Addr my_malloc(unsigned int _length) {
 		int sizeAfterSplit;
 		sizeAfterSplit = (touse->size + header_size) / 2 - header_size;
 		
-		//printf ("if=%d\n",   final_i );
+		//printf ("ifinal=%d\n",   final_i );
 		//printf ("%d\n",  _length && final_i );
 		while (sizeAfterSplit >= _length && final_i > 0) {
-		//printf ("%d\n",  _length && final_i );
+		//printf ("in %d\n",  _length && final_i );
 			sizeAfterSplit = (touse->size + header_size) / 2 - header_size;
 				
-			printf("Split %d into",touse->size + header_size);
+			//printf("Split %d into",touse->size + header_size);
 				
 			touse->size = sizeAfterSplit;
 			touse->empty = 1;
 				
-			printf("[%d][%d]\n",sizeAfterSplit + header_size,sizeAfterSplit + header_size);
+			//printf("[%d][%d]\n",sizeAfterSplit + header_size,sizeAfterSplit + header_size);
 				
 			Header *hNew = (Addr)(((void*)touse) + (touse->size));
 				
@@ -163,13 +164,13 @@ extern Addr my_malloc(unsigned int _length) {
 		touse->empty  = 0;
 		free_list[final_i][final_j] = NULL;
 		
-		print();
+		//print();
 		
 		return (Addr)touse;
 		
 	} 
 	else {
-		printf("Error: No more memory!\n");
+		printf("Error: Can't fit into memory!\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -185,11 +186,11 @@ extern int my_free(Addr _a) {
   	
   	if (free_list[l][0] == NULL) {
   		free_list[l][0] = h;
-  		printf("my_free(%d) at [%d][%d]\n",h->size + header_size,l,0);
+  		//printf("my_free(%d) at [%d][%d]\n",h->size + header_size,l,0);
   	} 
 	else if (free_list[l][1] == NULL) {
   		free_list[l][1] = h;
-  		printf("my_free(%d) at [%d][%d]\n",h->size + header_size,l,1);
+  		//printf("my_free(%d) at [%d][%d]\n",h->size + header_size,l,1);
   	}
   	
   	if (h->prev != NULL) {
@@ -207,12 +208,12 @@ extern int my_free(Addr _a) {
   			free_list[l][0] = NULL;
   			free_list[l][1] = NULL;
   			
-  			printf("Merge with (%d)\n", h->size + header_size);
+  			//printf("Merge with (%d)\n", h->size + header_size);
   			my_free((Addr*)temp);
   		}
   	}	 	
   	
-  	printf("Done\n");
+  	//printf("Done\n");
 }
 
 int getList(Addr _a) {

@@ -5,7 +5,7 @@
 
 int main(int argc, char ** argv) {
     unsigned int basic_block_size =  128;
-    unsigned int length  = 524288;
+    unsigned int length  = 134217728;
 	
 	Addr mem[4];
     
